@@ -9,8 +9,11 @@ from django.shortcuts import render
 # def february(request):
 #     return HttpResponse("Walk for at least 20 minutes every day!")
 
-def march(request):
-    return HttpResponse("Learn Django for at least 30 minutes every day!")
+# def march(request):
+#     return HttpResponse("Learn Django for at least 30 minutes every day!")
+
+def monthly_challenges_by_numbers(request, month):
+    return HttpResponse(month)
 
 def monthly_challenges(request, month):
     challenge_text = None

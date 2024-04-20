@@ -9,7 +9,8 @@
     <h1>List of all months available in the year</h1>
     <ul>
         {% for month in months %}
-            <li><a href="">{{ month|title }} Challenge</a></li>
+            <!-- <li><a href="/challenges/{{ month }}">{{ month|title }} Challenge</a></li> -->
+            <li><a href="{% url "month-challenge" month %}">{{ month|title }} Challenge</a></li>
         {% endfor %}
     </ul>
 

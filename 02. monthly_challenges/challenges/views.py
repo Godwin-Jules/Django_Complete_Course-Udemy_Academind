@@ -24,7 +24,6 @@ def index(request):
 
     return render(request, "challenges/index.html", {
         "months": months,
-        "challenges": monthly_challenges
     })
 
 def monthly_challenges_by_numbers(request, month):

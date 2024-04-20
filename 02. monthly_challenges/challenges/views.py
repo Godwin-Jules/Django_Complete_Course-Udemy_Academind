@@ -33,6 +33,7 @@ def monthly_challenges_by_numbers(request, month):
 def monthly_challenge(request, month):
     try:
         challenge_text = monthly_challenges[month.lower()]
-        return HttpResponse(challenge_text)
+        response_data = f"<h1>{challenge_text}</h1>"
+        return HttpResponse(response_data)
     except:
-        return HttpResponseNotFound("This month is not supported!")
+        return HttpResponseNotFound(f"<h1>This month is not supported!</h1>")

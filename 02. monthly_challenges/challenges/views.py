@@ -45,6 +45,7 @@ def monthly_challenge(request, month):
     try:
         challenge_text = monthly_challenges[month.lower()]
         return render(request, "challenges/challenge.html", {
+            "month": month.capitalize(),
             "text": challenge_text
         })
     except:

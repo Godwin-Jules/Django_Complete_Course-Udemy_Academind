@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block content %}
+
+{% include "challenges/includes/header.html" with active_page="index" %}
+
 <h1>List of all months available in the year</h1>
 <ul>
     {% for month in months %}

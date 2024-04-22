@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 # from django.template.loader import render_to_string
@@ -39,12 +39,9 @@ def monthly_challenges_by_numbers(request, month):
     return HttpResponseRedirect(redirect_path)
 
 def monthly_challenge(request, month):
-    try:
-        challenge_text = monthly_challenges[month.lower()]
-        return render(request, "challenges/challenge.html", {
-            "month": month,
-            "text": challenge_text
-        })
-    except:
-        # return render_to_string("404.html")
-        raise Http404()
+
+    challenge_text = monthly_challenges[month]
+    return render(request, "challenges/challenge.html", {
+        "month": month,
+        "text": challenge_text
+    })

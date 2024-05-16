@@ -1,0 +1,10 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 0.8rem;
+    background-color: hsla(0, 0%, 27%, 0.05);
+    color: hsl(241, 54%, 21%);
+}
+h1 {
+    color: hsl(242, 87%, 94%);
+    color : hsl(0, 9%, 34%);
+}

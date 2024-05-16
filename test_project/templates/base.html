@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta lang="en">
+        <title>{% block title %}Home Page{% endblock %}</title>
+        {% block css_style %}
+            <link rel="stylesheet" href="{% static 'style.css' %}">
+        {% endblock css_style %}
+
+        <style>{% block document_style %}{% endblock document_style %}</style>
+
+    </head>
+    <body>
+        {% block header %}{% endblock header %}
+
+        <h1>{% block page_title %}A pretty good Website built with Django Framework{% endblock page_title %}</h1>
+
+        {% block content %}
+            <p>This is a new website to exercise myself in mastering the Django Framework</p>
+        {% endblock content %}
+        
+        {% block footer %}{% endblock footer %}
+
+    </body>
+</html>

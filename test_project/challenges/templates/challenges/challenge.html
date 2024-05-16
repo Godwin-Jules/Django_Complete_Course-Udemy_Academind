@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} {{ month|title }}'s Challenge {% endblock title %}
+
+{% comment %} {% block css_style %}{% endblock css_style %} {% endcomment %}
+
+{% comment %} {% block header %}{% endblock header %} {% endcomment %}
+
+{% block page_title %} {{ month|title }}'s Challenge {% endblock page_title %}
+
+{% block content %}
+
+    {% if challenge is None %}
+        <p>There is no challenge for this month yet</p>
+    {% else %}
+        <p>{{ challenge }}</p>
+    {% endif %}
+
+{% endblock content %}
+
+{% comment %} {% block footer %}{% endblock footer %} {% endcomment %}

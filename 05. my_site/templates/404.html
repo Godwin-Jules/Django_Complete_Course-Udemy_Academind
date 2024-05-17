@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}Page Not Found{% endblock title %}
+
+{% block css_style %}
+    <link rel='stylesheet' href='{% static "404.css" %}'>
+{% endblock css_style %}
+
+{% block content %}
+    <h1>Error 404! Page Not Found</h1>
+
+    <p>The page you are looking for is not available. Try another url!</p>
+{% endblock content %}

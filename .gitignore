@@ -1,4 +1,2 @@
 .env
-01. mypage/mypage/__pycache__
-02. monthly_challenges/monthly_challenges/__pycache__
-02. monthly_challenges/challenges/__pycache__
+__pycache__

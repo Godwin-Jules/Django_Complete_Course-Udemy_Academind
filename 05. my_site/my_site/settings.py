@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
-from test_project.test_project.settings import STATICFILES_DIRS
+# Ehhh this line below hurts me a lot, because of it I was at point of deleting the whole project, I can't understand the whole thing but I know that patience is the key to become and maintain the statut of Developer 😎
+# from test_project.test_project.settings import STATICFILES_DIRS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

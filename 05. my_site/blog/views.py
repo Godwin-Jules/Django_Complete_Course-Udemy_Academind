@@ -13,6 +13,6 @@ def posts(request):
     return render(request, '404.html', {})
     # return render(request, 'blog/posts', {})
 
-def post(request):
+def post(request, slug):
     return render(request, '404.html', {})
     # return render(request, 'blog/post', {})

@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -21,45 +21,23 @@ MONTHS = list(monthly_challenges.keys())
 
 # Create your views here.
 def index(request):
-    return render(request,
-                  'challenges/index.html',
-                  {'months': MONTHS})
+    return render(request, 'challenges/index.html', {'months': MONTHS})
 
 def challenge_by_string(request, months:str):
 
-    month = months.lower()
-    if month in MONTHS:
-        challenge = monthly_challenges[month]
-        return render(request,
-                      'challenges/challenge.html',
-                      {
-                          'month': month,
-                          'challenge': challenge,
-                      })
+    if months.lower() in MONTHS:
+        return render(request, 'challenges/challenge.html', {
+                            'month': months,
+                            'challenge': monthly_challenges[months.lower()],
+                        })
     else:
         return render(request, '404.html')
 
 def challenge_by_number(request, months:int):
 
-
-    # The first solution
     if months > len(monthly_challenges):
         return render(request, '404.html')
     
-    redirect_month = MONTHS[months - 1]  # type: ignore
-    redirect_path = reverse('challenge-by-string', args=[redirect_month])
+    month = list(monthly_challenges.keys())[months - 1]
+    redirect_path = reverse('challenge-string', args=[month])
     return HttpResponseRedirect(redirect_path)
-    # return HttpResponseRedirect(reverse('challenges_index', args=[monthly_challenges[months - 1]])) # type: ignore
-    
-    # The second solution
-    # if months > len(monthly_challenges):
-    #     challenge = monthly_challenges[months-1]
-    #     month = list(monthly_challenges.keys())
-    #     return render(request,
-    #                   'challenge.html',
-    #                   {
-    #                       'month': month,
-    #                       'challenge': challenge,
-    #                   })
-    # else:
-    #     return render(request, '404.html')

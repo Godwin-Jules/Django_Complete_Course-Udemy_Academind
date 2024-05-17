@@ -11,9 +11,11 @@
 
 {% block content %}
     
-    {% for month in months %}
-        <h4><a href='{% url "challenge_by_string" month %}' title='{{ month|title }}'>{{ month|title}}</a></h4>
-    {% endfor %}
+    <ul style='list-style: none;'>
+        {% for month in months %}
+            <li><a href='{% url "challenge-string" month %}' title='{{ month|title }}'>{{ month|title}}</a></li>
+        {% endfor %}
+    </ul>
 
 {% endblock content %}
 

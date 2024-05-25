@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% load static %}
+
+
+{% block title %}
+This Post Title
+{% endblock title %}
+
+{% block css_style %}
+    <link rel='stylesheet' href='{% static 'blog/post-detail.css' %}'>
+{% endblock css_style %}
+
+{% block content %}
+    <section id='summary'>
+        <h2>Post Title</h2>
+        <article>
+            <img src='{% static 'blog/images/mountains.jpg' %}' alt='Post Title'>
+            <address>By MDK</address>
+            <div>
+                Last updated on <time>July 10th</time>
+            </div>
+        </article>
+    </section>
+
+    <main>
+        <p>
+            {% lorem 5 p random %}
+        </p>
+    </main>
+{% endblock content %}

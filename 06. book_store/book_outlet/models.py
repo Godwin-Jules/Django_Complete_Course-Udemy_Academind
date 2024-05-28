@@ -49,7 +49,15 @@ class Book(models.Model):
     ])
     author = models.CharField(null=True, max_length=100)
     is_bestselling = models.BooleanField(default=False)
-    slug = models.SlugField(default='', null=False, db_index=True)
+    slug = models.SlugField(default='', blank=True, null=False, db_index=True)
+    
+    """
+    - default : default value,
+    - blank (True/False) : the object can be saved with/without any value
+    - null (True/False) : the object can be saved with/without a NULL value
+    - db_index (True/False) : Creating an index on this specific column
+    - editable (True/False) : Specify if this field can be editable in the admin panel or not
+    """
 
     def get_absolute_url(self):
         return reverse("book", args=[self.slug])   # type: ignore

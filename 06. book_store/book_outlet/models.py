@@ -41,13 +41,23 @@ For example:
 
 # Create your models here.
 
+class Author(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+
 class Book(models.Model):
     title = models.CharField(max_length=50)
     rating = models.IntegerField(validators=[
         MinValueValidator(1),
         MaxValueValidator(5)
     ])
-    author = models.CharField(null=True, max_length=100)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null = True)
+    """
+    * CASCADE : every books related to this author will be deleted automatically
+    * PROTECTED : avoid deleting author who is related to an existing book
+    * SET : set a default value this specific author field when this specific author is deleted
+    * SET_NULL : set NULL the value of author field when this one is deleted
+    """
     is_bestselling = models.BooleanField(default=False)
     slug = models.SlugField(default='', blank=True, null=False, db_index=True)
     

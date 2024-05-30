@@ -48,6 +48,9 @@ class Country(models.Model):
     def __str__(self):
         return f"{self.name} ({self.code})"
 
+    class Meta:
+        verbose_name_plural = 'Countries'
+
 
 class Address(models.Model):
     street = models.CharField(max_length=80)
@@ -81,7 +84,9 @@ class Book(models.Model):
     ])
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null = True, related_name='books')
     """
-    * The related_name is formed by the combinaison of the class_name in lowercase with '_set' but you can rename that by adding the argument related_name where you created the relation
+    * The related_name is formed by:
+     -  the combinaison of the class_name in lowercase with '_set' but you can rename that by adding the argument related_name where you created the OneToMany and ManyToMany Relation
+     -  the class name in lowercase where you created the OneToOne Relation
     * CASCADE : every books related to this author will be deleted automatically
     * PROTECTED : avoid deleting author who is related to an existing book
     * SET : set a default value this specific author field when this specific author is deleted

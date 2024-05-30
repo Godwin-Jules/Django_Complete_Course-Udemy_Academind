@@ -44,7 +44,22 @@ body {
 }
 
 #summary address {
+  font-weight: light;
+}
+
+#summary a {
   font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+#summary a:hover {
+  color: hsla(244, 81%, 90%, 0.897);
+}
+
+#summary span {
+  font-weight: bold;
+  color: white;
 }
 
 #summary time {

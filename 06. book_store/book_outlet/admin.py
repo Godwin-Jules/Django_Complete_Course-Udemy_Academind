@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book, Author, Address
+from .models import Book, Author, Address, Country
 
 # Register your models here.
 
@@ -16,8 +16,13 @@ class AddressAdmin(admin.ModelAdmin):
     list_display = ('street', 'city', 'postal_code',)
     list_filter = ('street', 'city',)
 
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ('code', 'name',)
+    list_filter = ('code', 'name',)
+
 admin.site.register(Book, BookAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Address, AddressAdmin)
+admin.site.register(Country, CountryAdmin)
 
 # Pour créer un super utilisateur, on exécute la commande suivante dans le terminal : 'py manage.py createsuperuser' et après on remplit les informatinos nécessaires puis valider. Après la création il faudra redémarrer le serveur ...

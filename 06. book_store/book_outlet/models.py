@@ -41,6 +41,13 @@ For example:
 
 # Create your models here.
 
+class Country(models.Model):
+    name = models.CharField(max_length=80)
+    code = models.CharField(max_length=2)
+
+    def __str__(self):
+        return f"{self.name} ({self.code})"
+
 
 class Address(models.Model):
     street = models.CharField(max_length=80)
@@ -82,6 +89,7 @@ class Book(models.Model):
     """
     is_bestselling = models.BooleanField(default=False)
     slug = models.SlugField(default='', blank=True, null=False, db_index=True)
+    published_countries = models.ManyToManyField(Country)
     
     """
     - default : default value,

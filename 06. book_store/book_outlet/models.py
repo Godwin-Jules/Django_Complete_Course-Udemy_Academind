@@ -45,14 +45,22 @@ class Author(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def save(self, *args, **kwargs):
+        self.last_name = self.last_name.upper()
+        super().save(*args, **kwargs)
+
 class Book(models.Model):
     title = models.CharField(max_length=50)
     rating = models.IntegerField(validators=[
         MinValueValidator(1),
         MaxValueValidator(5)
     ])
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, null = True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null = True, related_name='books')
     """
+    * The related_name is formed by the combinaison of the class_name in lowercase with '_set' but you can rename that by adding the argument related_name where you created the relation
     * CASCADE : every books related to this author will be deleted automatically
     * PROTECTED : avoid deleting author who is related to an existing book
     * SET : set a default value this specific author field when this specific author is deleted

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book
+from .models import Book, Author
 
 # Register your models here.
 
@@ -8,5 +8,10 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = ('author', 'rating')  # Permet de spécifier les options des filtrage des données dans la panel d'admin
     list_display = ('title', 'author')  # Permet de spécifier les colonnes à afficher dans le panel d'admin
 
+class AuthorAdmin(admin.ModelAdmin):
+    list_filter = ('first_name', 'last_name',)
+    list_display = ('first_name', 'last_name',)
+
 admin.site.register(Book, BookAdmin)
 # Pour créer un super utilisateur, on exécute la commande suivante dans le terminal : 'py manage.py createsuperuser' et après on remplit les informatinos nécessaires puis valider. Après la création il faudra redémarrer le serveur ...
+admin.site.register(Author, AuthorAdmin)

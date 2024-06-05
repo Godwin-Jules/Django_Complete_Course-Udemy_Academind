@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta rel='favicon' type='favicon' href='{% static "images/logo.jpg" %}'>
+    <title>{% block title %} Your Page Title {% endblock title %}</title>
+    <link rel='stylesheet' href='{% static "main.css" %}'>
+    {% block your_styles %}{% endblock your_styles %}
+    
+</head>
+<body>
+    <header>
+        <a href='/' title='' alt=''><img id='logo' src='{% static "images/logo.jpg" %}' alt=''></a>
+        <nav>
+            <a href='/add/' alt='Add Contact'>Add</a>
+            <a href='/contacts/' alt='All Contacts'>Contacts</a>
+            <a href='Delete' alt='Delete Contacts'>Delete</a>
+            <a href='/forms/' alt='Filling the form'>Forms</a>
+        </nav>
+    </header>
+    
+    {% block content %}{% endblock content %}
+    <footer>
+        <h2>What I Do</h2>
+        <p>
+            I like programming, helping others and I enjoy new technologies in general!
+        </p>
+        <p>
+            My goal is to keep on growing as a Developer - and if I can help you do the same, I'll be very happy!
+        </p>
+        <hr />
+        <div class='media'>
+            <div class='left'>
+                <p>Let's Connect!</p>
+                <section id='connect'>
+                    <a href='https://facebook.com' alt='Our FaceBook Page' target='_blank'>FaceBook</a>
+                    <a href='https://instagram.com' alt='Our Instagram Profile' target='_blank'>Instagram</a>
+                    <a href='https://linkedin.com' alt='Our LinkedIn Page' target='_blank'>LinkedIn</a>
+                    <a href='https://youtube.com' alt='Our YouTube Channel' target='_blank'>YouTube</a>
+                </section>
+            </div>
+            <div class='rigth'>
+                <p>Our rigths and conditions</p>
+                <section id='conditions'>
+                    <a href='/conditions/' alt='Terms and Conditions of Usage'>Terms and Conditions of Usage</a>
+                    <a href='/rights/' alt='Our Rights'>Our Rigths</a>
+                </section>
+            </div>
+            <div id='subscribe'>
+                <form action='/' method='POST'>
+                    {% csrf_token %}
+                    <label for='email'>Your Email: </label>
+                    <input type='email' id='email' name='email' placeholder='name@domain.site'>
+                    <button type='submit'>Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

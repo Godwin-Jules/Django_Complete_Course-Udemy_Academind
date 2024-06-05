@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: hsla(239, 100%, 82%, 0.466);
+}
+
+html {
+    font-family: 'Lato', 'Open Sans', sans-serif;
+}
+
+body * {
+    padding: 10px;
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+header {
+    height: 100px;
+    background-color: hsla(29, 100%, 53%, 0.712);
+    padding: 0 1.5vw;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#logo {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+header nav a,
+header nav a:visited,
+footer a,
+footer a:visited {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: hsl(261, 93%, 27%);
+    text-decoration: none;
+}
+
+header nav a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+header nav a:focus {
+    color: black;
+}
+
+
+footer {
+    width: 100%;
+    background-color: hsla(29, 100%, 53%, 0.712);
+    text-align: center;
+    justify-content: center;
+}
+
+
+
+footer h2, h1 {
+    font-size: 5vw;
+    text-align: center;
+}
+
+footer p {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+footer .media {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+footer hr {
+    padding: 0;
+    background-color: black;
+    height: 2px;
+    width: 70vw;
+    border-radius: 2px;
+    justify-content: center;
+}
+
+footer #connect,
+footer #conditions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer #subscrible input {
+    border-radius: 5px;
+    font-weight: bold;
+}

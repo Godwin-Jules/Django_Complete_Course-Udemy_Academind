@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}HomePage{% endblock title %}
+
+{% block content %}
+    <h1>Your Custumized website for your learning journey!</h1>
+    <h3>I hope you'll have fun</h3>
+    <p>
+        {% lorem 1 b random %}
+    </p>
+{% endblock content %}

@@ -6,12 +6,15 @@
         <meta charset="utf-8">
         <meta lang="en">
         <title>Your Review</title>
+        <link rel='stylesheet' href='{% static "reviews/styles.css" %}'
     </head>
 
     <body>
-        <form action='/' method='POST'>
+        <form action='/' method='POST' class  ="form-control {% if form.user_name.errors %}errors{% endif %}">
             {% csrf_token %}
-            {{ form }}
+            {{ form.user_name.label_tag }}
+            {{ form.user_name }}
+            {{ form.user_name.errors }}
             <button type='submit'>Send</button>
         </form>
     </body>

@@ -9,13 +9,9 @@
     </head>
 
     <body>
-        <form method='POST'>
+        <form action='/' method='POST'>
             {% csrf_token %}
-            {% if has_error %}
-                <p>This form is invalid - please enter a valid username!</p>
-            {% endif %}
-            <label for='username'>Your name</label>
-            <input id='username' name='name' type='text'>
+            {{ form }}
             <button type='submit'>Send</button>
         </form>
     </body>

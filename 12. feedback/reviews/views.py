@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from .forms import ReviewForm
-from .models import Review
+from django.views.generic import TemplateView
 
 # Create your views here.
 # CSRF stands for Cross Site Request Forgery
@@ -20,5 +20,10 @@ class ReviewView(View):
         else:
             return render(request, 'reviews/review.html', {'form': form})
 
-def thank_you(request):
-    return render(request, 'reviews/thank_you.html')
+class ThankYouView(TemplateView):
+    template_name = 'reviews/thank_you.html'
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['message'] = 'This works!'
+        return data

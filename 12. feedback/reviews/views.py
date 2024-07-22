@@ -1,3 +1,4 @@
+from typing import Any
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
@@ -37,4 +38,13 @@ class ReviewListView(TemplateView):
         context = super().get_context_data(**kwargs)
         rev = rv.objects.all()
         context['reviews'] = rev
+        return context
+    
+class ReviewDetailView(TemplateView):
+    template_name = 'reviews/review_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        review  = rv.objects.get(pk = kwargs['review_id'])
+        context['review'] = review
         return context

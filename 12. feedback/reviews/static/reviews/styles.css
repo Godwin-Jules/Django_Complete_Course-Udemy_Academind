@@ -69,3 +69,8 @@ button:focus {
 .errors label {
     color: #680000;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

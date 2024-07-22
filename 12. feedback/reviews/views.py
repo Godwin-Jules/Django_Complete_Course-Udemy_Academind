@@ -8,13 +8,10 @@ from .models import Review
 
 def review(request):
     if request.method == 'POST':
-        form = ReviewForm(request.POST)
+        existing_model = Review.objects.get(pk=1)
+        form = ReviewForm(request.POST, instance = existing_model)
         if form.is_valid():
-            form = form.cleaned_data
-            review = Review(user_name = form['user_name'],
-                            review_text = form['review_text'],
-                            rating = form['rating'])
-            review.save()
+            form.save()
             return HttpResponseRedirect('/thank-you')
     else:
         form = ReviewForm()

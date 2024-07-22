@@ -4,6 +4,8 @@ from django.views import View
 from .forms import ReviewForm
 from django.views.generic import TemplateView
 
+from .models import Review as rv
+
 # Create your views here.
 # CSRF stands for Cross Site Request Forgery
 
@@ -27,3 +29,12 @@ class ThankYouView(TemplateView):
         data = super().get_context_data(**kwargs)
         data['message'] = 'This works!'
         return data
+    
+class ReviewListView(TemplateView):
+    template_name = 'reviews/review_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        rev = rv.objects.all()
+        context['reviews'] = rev
+        return context

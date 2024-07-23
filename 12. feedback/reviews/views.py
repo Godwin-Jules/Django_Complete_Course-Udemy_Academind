@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views import View
 from .forms import ReviewForm
 from django.views.generic import TemplateView
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Review as rv
 
@@ -43,11 +43,6 @@ class ReviewListView(ListView):
         reviews_filtered = context.filter(rating__gt = 4)
         return reviews_filtered
 
-class ReviewDetailView(TemplateView):
+class ReviewDetailView(DetailView):
     template_name = 'reviews/review_detail.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        review  = rv.objects.get(pk = kwargs['review_id'])
-        context['review'] = review
-        return context
+    model = rv

@@ -1,29 +1,25 @@
-from typing import Any
-from django.db.models.query import QuerySet
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.views import View
-from .forms import ReviewForm
 from django.views.generic import TemplateView
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView
 
+from .forms import ReviewForm
 from .models import Review as rv
 
 # Create your views here.
 # CSRF stands for Cross Site Request Forgery
 
-class ReviewView(View):
-    def get(self, request):
-        form = ReviewForm()
-        return render(request, 'reviews/review.html', {'form': form})
+class ReviewView(CreateView):
+    model = rv  # so you don't wanna create a form class any more or you can point form_class to the form class as well
+                # but you must know something, if you don't use the form_class this CreateView can't let configure the
+                # labels for example ... but will use the default configuration for creating a form in Django
+    form_class = ReviewForm
+    template_name = 'reviews/review.html'
+    success_url = '/thank-you'
 
-    def post(self, request):
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/thank-you')
-        else:
-            return render(request, 'reviews/review.html', {'form': form})
+    def form_valid(self, form):     # You must override this method to specify what you want the view to do after the valid form is submitted
+        form.save()
+        return super().form_valid(form)
+    
 
 class ThankYouView(TemplateView):
     template_name = 'reviews/thank_you.html'
@@ -33,6 +29,7 @@ class ThankYouView(TemplateView):
         data['message'] = 'This works!'
         return data
     
+
 class ReviewListView(ListView):
     template_name = 'reviews/review_list.html'
     model = rv
@@ -40,8 +37,8 @@ class ReviewListView(ListView):
 
     def get_queryset(self):
         context = super().get_queryset()
-        reviews_filtered = context.filter(rating__gt = 4)
-        return reviews_filtered
+        return context
+
 
 class ReviewDetailView(DetailView):
     template_name = 'reviews/review_detail.html'

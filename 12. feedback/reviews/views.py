@@ -46,6 +46,16 @@ class ReviewDetailView(DetailView):
     template_name = 'reviews/review_detail.html'
     model = rv
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        loaded_review = self.get_object()
+        # favorite_id = self.request.session['favorite_review']
+        request = self.request
+        favorite_id = request.session['favorite_review']
+        context['is_favorite'] = favorite_id == str(loaded_review.pk)
+        return context
+
+
 class AddFavoriteView(View):
     def post(self, request):
         review_id = request.POST['review_id']

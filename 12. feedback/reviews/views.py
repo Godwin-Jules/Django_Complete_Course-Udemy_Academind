@@ -51,7 +51,7 @@ class ReviewDetailView(DetailView):
         loaded_review = self.get_object()
         # favorite_id = self.request.session['favorite_review']
         request = self.request
-        favorite_id = request.session['favorite_review']
+        favorite_id = request.session.get('favorite_review')
         context['is_favorite'] = favorite_id == str(loaded_review.pk)
         return context
 

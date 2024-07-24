@@ -1,3 +1,4 @@
+from django.views import View
 from django.views.generic import TemplateView
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
@@ -43,3 +44,8 @@ class ReviewListView(ListView):
 class ReviewDetailView(DetailView):
     template_name = 'reviews/review_detail.html'
     model = rv
+
+class AddFavoriteView(View):
+    def post(self, request):
+        review_id = request.POST['review_id']
+        review = rv.objects.get(pk=review_id)

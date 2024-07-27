@@ -76,7 +76,8 @@ main {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-#comment-form {
+#comment-form,
+#comments {
   margin: 3rem auto;
   width: 90%;
   max-width: 40rem;
@@ -155,4 +156,37 @@ main {
   color: white;
   padding: 0.25rem 1.5rem;
   border-radius: 6px
+}
+
+#comments {
+  max-width: 60rem;
+  padding: 1rem 2rem;
+}
+
+#comments ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#comments li {
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ccc;
+}
+
+#comments li:last-of-type {
+  border-bottom: none;
+}
+
+#comments h2 {
+  color:#464646;
+}
+
+#comment_title {
+  font: inherit;
+  font-size: 2rem;
+  margin: 2rem 1rem;
+  text-align: center;
+  font-weight: bold;
+  color: #000000
 }

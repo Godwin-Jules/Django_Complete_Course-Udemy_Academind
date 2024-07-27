@@ -1,8 +1,7 @@
-from typing import Any
-from django.db.models.query import QuerySet
 from django.shortcuts import render
 from .models import *
 from django.views.generic import ListView, DetailView
+from .forms import CommentForm
 
 
 all_posts_registered = Post.objects.all()
@@ -43,4 +42,5 @@ class PostView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['post_tags'] = self.get_object().tags.all()     #type:ignore
+        context['comment_form'] = CommentForm()
         return context

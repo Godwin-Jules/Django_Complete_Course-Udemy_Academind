@@ -13,7 +13,10 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'date', 'author', 'slug',)
     list_filter = ('title', 'date',)
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('user_name', 'post',)
+
 admin.site.register(Tag)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Post, PostAdmin)
-admin.site.register(Comment)
+admin.site.register(Comment, CommentAdmin)

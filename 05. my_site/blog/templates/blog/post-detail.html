@@ -36,7 +36,8 @@
     </main>
     <section id='comment-form'>
         <h2>Your Comment</h2>
-        <form>
+        <form action='{% url 'blog-post' post.slug %}' method='post'>
+            {% csrf_token %}
             {% for form_field in comment_form %}
                 <div class='form-control'>
                     {{ form_field.label_tag }}

@@ -1,6 +1,10 @@
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render
-from .models import *
+from django.views import View
 from django.views.generic import ListView, DetailView
+
+from .models import *
 from .forms import CommentForm
 
 
@@ -31,16 +35,28 @@ class PostsView(ListView):
     context_object_name = 'all_posts'
 
 
-class PostView(DetailView):
-    template_name = 'blog/post-detail.html'
-    model = Post
+class PostView(View):
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset
+    def get(self, request, slug):
+        post = Post.objects.get(slug=slug)
+        return render(request, 'blog/post-detail.html', {
+            'post': post,     
+            'post_tags': post.tags.all(),
+            'comment_form': CommentForm()
+        })
+    
+    def post(self, request, slug):
+        comment_form = CommentForm(request.POST)
+        post = Post.objects.get(slug=slug)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['post_tags'] = self.get_object().tags.all()     #type:ignore
-        context['comment_form'] = CommentForm()
-        return context
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return HttpResponseRedirect(reverse('blog-post', args=[slug]))
+
+        return render(request, 'blog/post-detail.html', {
+            'post': post,
+            'post_tags': post.tags.all(),
+            'comment_form': comment_form
+        })

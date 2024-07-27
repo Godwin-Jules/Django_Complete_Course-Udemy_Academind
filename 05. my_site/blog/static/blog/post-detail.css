@@ -97,9 +97,7 @@ main {
 }
 
 #comment-form button:active,
-#comment-form button:focus,
 #comment-form button:hover {
-  /* background-color: #5706c0; */
   background-color:#4f0ba7;  
   border-color: #4f0ba7
 }

@@ -16,7 +16,8 @@
                 <a href='/'>MDK' Blog</a>
             </h1>
             <nav>
-                <a href='/posts/'>All Posts</a>
+                <a href='{% url "read-later" %}'>Stored Posts</a>
+                <a href='{% url "blog-posts" %}'>All Posts</a>
             </nav>
         </header>
     

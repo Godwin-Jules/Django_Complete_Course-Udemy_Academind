@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from os import getenv
 
 # Ehhh this line below hurts me a lot, because of it I was at point of deleting the whole project, I can't understand the whole thing but I know that patience is the key to become and maintain the statut of Developer 😎
 # from test_project.test_project.settings import STATICFILES_DIRS
@@ -26,9 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4vrw*r)0+#g2^prt$j6v4+lc7%$ls5ioub#d)64g-1hv%cb^+f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = getenv('IN_DEVELOPMENT', True)   # The second argument is the default value in case the environment variable is not set
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    getenv('APP_HOST')
+]
 
 
 # Application definition

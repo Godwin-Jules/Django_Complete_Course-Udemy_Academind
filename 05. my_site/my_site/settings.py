@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-4vrw*r)0+#g2^prt$j6v4+lc7%$ls5ioub#d)64g-1hv%cb^+f
 DEBUG = getenv('IN_DEVELOPMENT', True)   # The second argument is the default value in case the environment variable is not set
 
 ALLOWED_HOSTS = [
-    getenv('APP_HOST')
+    getenv('APP_HOST', 'localhost')
 ]
 
 
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'blog',
-    'storages',
+    # 'storages',
 ]
 
 MIDDLEWARE = [

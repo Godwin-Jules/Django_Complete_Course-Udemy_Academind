@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from django.views.generic import ListView
 
@@ -47,8 +47,8 @@ class PostView(View):
         return is_saved_for_later
 
     def get(self, request, slug):
-        post = Post.objects.get(slug=slug)
-        
+        post = get_object_or_404(Post, slug=slug)
+
 
         return render(request, 'blog/post-detail.html', {
             'post': post,
@@ -60,7 +60,7 @@ class PostView(View):
 
     def post(self, request, slug):
         comment_form = CommentForm(request.POST)
-        post = Post.objects.get(slug=slug)
+        post = get_object_or_404(Post, slug=slug)
 
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
